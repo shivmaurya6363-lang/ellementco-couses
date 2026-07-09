@@ -203,15 +203,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .minikit-pill { width: auto; min-width: 165px; padding: 14px 34px; background-color: var(--brand-blue); border-radius: 50px; color: var(--brand-white); font-size: 18px; font-weight: 700; text-align: center; transition: background .2s; }
 .minikit-pill:hover { background: var(--brand-blue-dark); }
 
-/* Wave bridge between minikits (cream) → pink strip → pre-footer (blue)
-   Matches Image 1: cream scallop bumps hang DOWN into pink from above,
-   then a solid pink band, then blue starts.
-   Technique: same absolute-positioned waves as founder-section in index.html */
-.bridge-wave-section { background-color: var(--brand-pink); position: relative; height: 100px; }
-.bridge-wave-top { position: absolute; top: -1px; left: 0; width: 100%; height: 60px; line-height: 0; z-index: 2; }
-.bridge-wave-top svg { display: block; width: 100%; height: 100%; }
-.bridge-wave-bottom { position: absolute; bottom: -1px; left: 0; width: 100%; height: 60px; line-height: 0; z-index: 2; }
-.bridge-wave-bottom svg { display: block; width: 100%; height: 100%; }
+/* bridge wave CSS removed — inline styles used directly in HTML */
 
 /* ============================================================
    PRE-FOOTER — exact copy from index.html
@@ -362,7 +354,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
       <button class="btn-booknow">Book now</button>
     </div>
     <div class="kit-photo-box">
-      <!-- Replace with: <img src="public/kit_photo.jpg" alt="DIY Workshop Kit"> -->
+      <img src="public/DIY_workshop_kit.jpg" alt="DIY Workshop Kit">
     </div>
   </div>
 </section>
@@ -372,21 +364,21 @@ button { font-family: inherit; cursor: pointer; border: none; }
   <h2 class="section-title" style="font-family:var(--display);font-size:48px;">What all is included ?</h2>
   <div class="included-carousel" id="includedCarousel">
     <div class="included-card">
-      <div class="included-img"><!-- <img src="public/kit1.jpg" alt="Kit contents"> --></div>
+      <div class="included-img"><img src="public/DIY_workshop_kit.jpg" alt="DIY Workshop Kit"></div>
       <div class="included-copy">
         <h4>With Kit includes:</h4>
         <p>5 nail polishes · Ombre brush · Nail stickers · Corrector pen · Tools · Top coat · Base coat</p>
       </div>
     </div>
     <div class="included-card">
-      <div class="included-img"><!-- <img src="public/kit2.jpg" alt="Kit contents"> --></div>
+      <div class="included-img"><img src="public/Nail_anatomy_workshop_kit.jpg" alt="Nail Anatomy Kit"></div>
       <div class="included-copy">
         <h4>With Kit includes:</h4>
         <p>5 nail polishes · Ombre brush · Nail stickers · Corrector pen · Tools · Top coat · Base coat</p>
       </div>
     </div>
     <div class="included-card">
-      <div class="included-img"><!-- <img src="public/kit3.jpg" alt="Kit contents"> --></div>
+      <div class="included-img"><img src="public/Press_on_workshop_kit_.jpg" alt="Press On Kit"></div>
       <div class="included-copy">
         <h4>With Kit includes:</h4>
         <p>5 nail polishes · Ombre brush · Nail stickers · Corrector pen · Tools · Top coat · Base coat</p>
@@ -409,7 +401,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
         <p>Driven by a deep love for the industry, she's dedicated to inspiring, guiding, and helping every student achieve their best, because passion deserves the right mentorship to become a real career.</p>
       </div>
       <div class="preetika-photo">
-        <!-- <img src="public/Preetika_singh.jpg" alt="Preetika Singh"> -->
+        <img src="public/Preetika_singh.jpg" alt="Preetika Singh">
       </div>
     </div>
   </div>
@@ -531,7 +523,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
   <h2 class="section-title">Call us for free consultation</h2>
   <div class="consultation-grid">
     <div class="consultation-box">
-      <!-- <img src="public/Call_us_for_free_consultation_800_x_600.jpg" alt="Call us for free consultation"> -->
+      <img src="public/Call_us_for_free_consultation_800_x_600.jpg" alt="Call us for free consultation">
     </div>
     <div class="consultation-form">
       <div class="form-title">Form</div>
@@ -552,41 +544,37 @@ button { font-family: inherit; cursor: pointer; border: none; }
   <h2 class="section-title">Mini kits</h2>
   <div class="minikits-grid">
     <div class="minikit-col">
-      <div class="minikit-box"><!-- <img src="public/DIY_workshop_kit.jpg" alt="DIY Workshop Kit"> --></div>
+      <div class="minikit-box"><img src="public/DIY_workshop_kit.jpg" alt="DIY Workshop Kit"></div>
       <button class="minikit-pill">Shop now!</button>
     </div>
     <div class="minikit-col">
-      <div class="minikit-box"><!-- <img src="public/Nail_anatomy_workshop_kit.jpg" alt="Nail Anatomy Kit"> --></div>
+      <div class="minikit-box"><img src="public/Nail_anatomy_workshop_kit.jpg" alt="Nail Anatomy Kit"></div>
       <button class="minikit-pill">Shop now!</button>
     </div>
     <div class="minikit-col">
-      <div class="minikit-box"><!-- <img src="public/Press_on_workshop_kit_.jpg" alt="Press On Kit"> --></div>
+      <div class="minikit-box"><img src="public/Press_on_workshop_kit_.jpg" alt="Press On Kit"></div>
       <button class="minikit-pill">Shop now!</button>
     </div>
   </div>
 </section>
 
 <!--
-  Wave transition: cream (minikits) → pink strip → blue (pre-footer)
-  Image 1 shows: cream scallop bumps pointing DOWN into pink, then pink band, then blue.
-  We use a pink section with the SAME wave technique as founder-section in index.html:
-  • top wave: cream fills from above, pink bumps rise (= cream hangs down into pink)
-  • bottom wave: blue fills from below, pink bumps remain (= pink hangs down into blue)
+  WAVE BRIDGE matching the screenshot exactly:
+  • Cream section ends
+  • SVG on cream bg: cream top half, pink smooth bumps hang down (products-wave--top from index.html)
+  • Plain pink spacer strip
+  • Blue pre-footer starts flat (no wave between pink and blue)
 -->
-<div class="bridge-wave-section" aria-hidden="true">
-  <!-- TOP: cream section above → cream bumps drip DOWN into pink (founder-wave--top pattern) -->
-  <div class="bridge-wave-top">
-    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#fbf4e6" d="M0,50 C37.5,32 112.5,32 150,50 C187.5,68 262.5,68 300,50 C337.5,32 412.5,32 450,50 C487.5,68 562.5,68 600,50 C637.5,32 712.5,32 750,50 C787.5,68 862.5,68 900,50 C937.5,32 1012.5,32 1050,50 C1087.5,68 1162.5,68 1200,50 L1200,0 L0,0 Z"></path>
-    </svg>
-  </div>
-  <!-- BOTTOM: blue pre-footer below → blue bumps rise UP into pink -->
-  <!-- <div class="bridge-wave-bottom">
-    <svg viewBox="0 0 1200 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path fill="#a0b8e1" d="M0,50 C37.5,68 112.5,68 150,50 C187.5,32 262.5,32 300,50 C337.5,68 412.5,68 450,50 C487.5,32 562.5,32 600,50 C637.5,68 712.5,68 750,50 C787.5,32 862.5,32 900,50 C937.5,68 1012.5,68 1050,50 C1087.5,32 1162.5,32 1200,50 L1200,100 L0,100 Z"></path>
-    </svg>
-  </div>
-</div> -->
+
+<!-- cream bg, pink smooth bumps pointing DOWN at the bottom -->
+<div style="background:var(--brand-cream);line-height:0;display:block;" aria-hidden="true">
+  <svg viewBox="0 0 1200 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:70px;">
+    <path fill="#ee6396" d="M0,35 C42.9,53 128.6,53 171.4,35 C214.3,17 300,17 342.9,35 C385.7,53 471.4,53 514.3,35 C557.1,17 642.9,17 685.7,35 C728.6,53 814.3,53 857.1,35 C900,17 985.7,17 1028.6,35 C1071.4,53 1157.1,53 1200,35 L1200,70 L0,70 Z"></path>
+  </svg>
+</div>
+
+<!-- solid pink strip between wave and blue pre-footer -->
+<div style="background:var(--brand-pink);height:55px;" aria-hidden="true"></div>
 
 <!-- ═══ PRE-FOOTER — exact from index.html ═══ -->
 <div class="pre-footer">
