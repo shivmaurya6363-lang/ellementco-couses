@@ -6,6 +6,7 @@
 <title>Online DIY Nail Art Workshop — Ellement Co. Nail Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Chonburi&family=Prata&display=swap" rel="stylesheet">
 <style>
+
 /* ============================================================
    GLOBAL — copied exactly from index.html
    ============================================================ */
@@ -196,7 +197,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .minikits-section .section-title { color: var(--brand-pink); font-family: var(--display); font-size: 46px; margin-bottom: 60px; }
 .minikits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 55px; max-width: 1100px; margin: 0 auto; }
 .minikit-col { display: flex; flex-direction: column; align-items: center; gap: 28px; }
-.minikit-box { background: #fefaf2; border-radius: 22px; width: 100%; aspect-ratio: 5/6; box-shadow: 0 10px 24px rgba(0,0,0,0.06); overflow: hidden; }
+.minikit-box { background: #fefaf2; border-radius: 22px; width: 100%; aspect-ratio: 5/6; overflow: hidden; }
 .minikit-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .minikit-pill { width: auto; min-width: 165px; padding: 14px 34px; background-color: var(--brand-blue); border-radius: 50px; color: var(--brand-white); font-size: 18px; font-weight: 700; text-align: center; transition: background .2s; }
 .minikit-pill:hover { background: var(--brand-blue-dark); }
@@ -289,39 +290,73 @@ button { font-family: inherit; cursor: pointer; border: none; }
   .hero-slide { transition: none; }
 }
 
+
+/* ── MINI KITS SLIDER ── */
+.minikits-slider-wrap { position: relative; display: flex; align-items: center; gap: 20px; max-width: 480px; margin: 0 auto; }
+.minikits-viewport { overflow: hidden; width: 100%; }
+.minikits-track { display: flex; transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1); will-change: transform; }
+.minikit-col { flex: 0 0 100%; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.minikit-name { font-family: var(--fashion); font-size: 22px; color: var(--brand-pink); text-align: center; }
+.minikit-arrow { width: 48px; height: 48px; border-radius: 50%; background: var(--brand-blue); color: var(--brand-white); border: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .15s; }
+.minikit-arrow:active { transform: scale(0.92); }
+.minikit-arrow svg { stroke: var(--brand-white); }
+.minikit-arrow:hover { background: var(--brand-blue-dark); }
+
+/* ── TESTIMONIALS SLIDER ── */
+.test-slider-viewport { overflow: hidden; }
+.test-grid { display: flex; gap: 24px; transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1); will-change: transform; max-width: none; margin: 0; }
+.test-box { flex: 0 0 calc(33.333% - 16px); }
+
+/* ── DESKTOP 3-UP TESTIMONIALS ── */
+@media (min-width: 601px) {
+  .test-grid { transform: none !important; cursor: default; }
+  .test-box { flex: 0 0 calc(33.333% - 16px); }
+}
+
+/* ── HAMBURGER/DRAWER: hidden on desktop ── */
+.hamburger { display: none; }
+.mobile-drawer { display: none; }
+.drawer-overlay { display: none; }
+
 /* ── MINI KITS: slider hidden on desktop, grid shown ── */
 #mkSlider { display: none; }
 #mkDots { display: none; }
 .minikits-grid { display: grid; }
 
-/* ── MINI KITS SLIDER CSS ── */
-.minikits-slider-wrap { position: relative; display: flex; align-items: center; gap: 20px; max-width: 480px; margin: 0 auto; }
-.minikits-viewport { overflow: hidden; width: 100%; }
-.minikits-track { display: flex; transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1); will-change: transform; }
-.minikit-arrow { width: 48px; height: 48px; border-radius: 50%; background: var(--brand-blue); color: var(--brand-white); border: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .15s; }
-.minikit-arrow:hover { background: var(--brand-blue-dark); }
-.minikit-arrow:active { transform: scale(0.92); }
-.minikit-arrow svg { stroke: var(--brand-white); }
-
-/* ── TESTIMONIALS SLIDER CSS ── */
-.test-slider-viewport { overflow: hidden; }
-.test-grid { display: flex; gap: 24px; transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1); will-change: transform; max-width: none; margin: 0; }
-.test-box { flex: 0 0 calc(33.333% - 16px); }
-@media (min-width: 601px) {
-  .test-grid { transform: none !important; cursor: default; }
+/* ── TABLET 768–992px ── */
+@media (max-width: 992px) {
+  .main-header { flex-wrap: wrap; }
+  .header-search { order: 3; flex: 1 1 100%; }
+  .hero-carousel { height: 420px; }
+  .hero-slide { width: 60%; }
+  .course-card { flex: 0 0 100%; }
+  .test-grid { gap: 20px; }
+  .test-box { flex: 0 0 calc(50% - 10px); }
+  .two-col, .consultation-grid { grid-template-columns: 1fr; }
+  .media-block { margin: 0 auto; }
+  .pre-footer, .footer-grid { grid-template-columns: 1fr 1fr; }
+  .wywg-grid { grid-template-columns: repeat(3, 1fr); gap: 40px 20px; }
+  .contact-row { grid-template-columns: 1fr; gap: 22px; max-width: 420px; }
+  .minikits-slider-wrap { max-width: 420px; }
 }
 
-/* ── MOBILE-ONLY ELEMENTS: hidden on desktop ── */
-.hamburger { display: none; }
-.mobile-drawer { display: none; }
-.drawer-overlay { display: none; }
-
+/* ── MOBILE 480–600px ── */
 @media (max-width: 600px) {
+
+  /* Typography scale: 3 sizes only — display/heading/body */
+  .section-title { font-size: 28px !important; margin-bottom: 20px !important; }
+  h2, .course-header h2, .text-col h2 { font-size: 26px !important; line-height: 1.25 !important; }
+  h3, .card-title { font-size: 18px !important; }
+  body, p, li, a { font-size: 13px !important; }
+  .top-bar { font-size: 12px; padding: 8px; }
+
+  /* Global section padding */
+  section, .section { padding-left: 5% !important; padding-right: 5% !important; padding-top: 36px !important; padding-bottom: 40px !important; }
 
   /* ── HEADER ── */
   .main-header {
     display: grid;
-    grid-template-columns: 44px 1fr;
+    grid-template-columns: 44px 1fr 44px;
     grid-template-rows: auto auto;
     align-items: center;
     padding: 10px 14px;
@@ -363,60 +398,199 @@ button { font-family: inherit; cursor: pointer; border: none; }
   .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999; }
   .drawer-overlay.open { display: block !important; }
 
-  /* ── TESTIMONIALS PEEK SLIDER ── */
+  /* ── HERO ── */
+  .hero-carousel { height: 300px; }
+  .hero-slide { width: 80%; }
+  .hero-slide.is-prev { transform: translate(-132%, -50%) scale(0.75); }
+  .hero-slide.is-next { transform: translate(32%, -50%) scale(0.75); }
+
+  /* ── COURSES ── */
+  .courses-section { padding: 40px 5% 40px !important; }
+  .course-filter { display: flex !important; flex-wrap: nowrap !important; overflow-x: auto !important; -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 8px !important; padding-bottom: 6px; }
+  .course-filter::-webkit-scrollbar { display: none; }
+  .filter-btn { flex-shrink: 0 !important; white-space: nowrap; font-size: 12px !important; padding: 8px 16px !important; }
+  .course-card { padding: 20px; }
+  .card-image { height: 160px; }
+  .card-prices { flex-direction: column; align-items: center; }
+  .btn-card { max-width: 100%; }
+
+  /* ── CALENDAR ── */
+  .calendar-section { padding: 50px 4% 50px !important; }
+  .calendar-board { padding: 10px 6px 14px; overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch; height: auto !important; }
+  .calendar-board::-webkit-scrollbar { height: 4px; width: 0; }
+  .calendar-board::-webkit-scrollbar-track { background: var(--brand-cream); border-radius: 4px; }
+  .calendar-board::-webkit-scrollbar-thumb { background: var(--brand-pink); border-radius: 4px; }
+  .calendar-board { scrollbar-width: thin; scrollbar-color: var(--brand-pink) var(--brand-cream); }
+  .calendar-grid { min-width: 490px; }
+  .calendar-day-header { font-size: 10px !important; padding: 5px 2px; }
+  .calendar-cell { min-height: 55px; height: auto; padding: 3px 2px; }
+  .day-number { font-size: 10px !important; }
+  .day-number.circled::after { width: 22px; height: 15px; }
+  .sticky-note { position: relative; top: auto; left: auto; width: auto; transform: none !important; font-size: 7px !important; padding: 3px 2px; margin-top: 2px; border-radius: 4px; box-shadow: none; }
+  .sticky-note span.online-badge { font-size: 6px !important; padding: 1px 4px; }
+  .pin { width: 9px; height: 9px; top: -5px; }
+  .pin::after { height: 3px; top: 8px; }
+  .calendar-title { font-size: 14px !important; }
+  .calendar-month { font-size: 14px !important; }
+  .notebook-rings { padding: 0 8px; top: -10px; }
+  .ring { width: 8px !important; height: 18px !important; border-radius: 6px; }
+
+  /* ── WYWG ── */
+  .wywg-section { padding: 50px 5% 50px !important; }
+  .wywg-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 16px; margin-top: 40px; }
+  .wywg-item img { width: 60px; height: 60px; }
+  .wywg-item p { font-size: 13px !important; }
+
+  /* ── TESTIMONIALS ── */
+  .test-section { padding: 50px 5% 50px !important; }
+  .test-section .section-title { font-size: 26px !important; margin-bottom: 34px !important; }
   .test-slider-viewport { overflow: hidden; touch-action: pan-y; padding-left: 44px; }
   .test-grid { cursor: grab; margin-left: -44px; }
   .test-grid.is-dragging { transition: none !important; cursor: grabbing; }
   .test-box { flex: 0 0 88% !important; }
-  .test-section { padding: 30px 5% 50px !important; }
-  .test-section .section-title { font-size: 26px !important; }
 
-  /* ── GENERAL SPACING ── */
-  section, .section { padding-left: 5% !important; padding-right: 5% !important; padding-top: 36px !important; padding-bottom: 40px !important; }
-  .section-title { font-size: 26px !important; margin-bottom: 20px !important; }
-
-  /* ── COURSE DETAIL ── */
-  .detail-grid, .preetika-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .kit-photo-box { min-height: 220px; }
-  .course-main-title { font-size: 30px !important; }
-
-  /* ── INCLUDED / STATS ── */
-  .included-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-  .included-card { flex: 0 0 85% !important; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
-
-  /* ── GALLERY ── */
-  .gallery-photo { flex: 0 0 80% !important; height: 260px !important; }
-
-  /* ── MINI KITS: hide desktop grid, show mobile slider ── */
-  .minikits-grid { display: none !important; }
-  #mkSlider { display: flex !important; }
-  #mkDots { display: flex !important; }
-  .minikits-slider-wrap { max-width: 100%; gap: 10px; }
-  .minikit-arrow { width: 38px; height: 38px; }
-  .minikits-section { padding: 30px 5% 40px !important; }
+  /* ── FOUNDER ── */
+  .founder-section { padding: 50px 5% !important; }
+  .two-col { grid-template-columns: 1fr !important; gap: 28px !important; }
+  .media-block { max-width: 100%; }
+  .founder-wave, .founder-wave--top, .founder-wave--bottom { height: 40px; }
+  .btn-whatsapp { font-size: 16px; padding: 12px 28px; }
 
   /* ── CONSULTATION ── */
-  .consultation-section { padding: 30px 5% 40px !important; }
-  .consultation-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-  .consultation-form { padding: 22px; }
-  .form-title { font-size: 24px !important; }
+  .consultation-section { padding: 50px 5% 50px !important; }
+  .consultation-grid { grid-template-columns: 1fr !important; gap: 20px !important; margin-top: 30px; }
+  .consultation-form { padding: 24px; }
+  .form-title { font-size: 26px !important; }
+
+  /* ── MINI KITS ── */
+  .minikits-section { padding: 50px 5% 50px !important; }
+  .minikits-slider-wrap { max-width: 100%; gap: 10px; }
+  .minikit-arrow { width: 38px; height: 38px; font-size: 18px; }
+  .minikit-name { font-size: 18px !important; }
+
+  /* ── FAQ ── */
+  .faq-section { padding: 50px 5% 50px !important; }
+
+  /* ── CONTACT ── */
+  .contact-section { padding: 50px 5% 50px !important; }
+  .contact-row { grid-template-columns: 1fr !important; gap: 16px !important; max-width: 100% !important; }
+  .contact-pill { font-size: 16px !important; padding: 14px 20px; }
+
+  /* ── PRE-FOOTER ── */
+  .pre-footer { grid-template-columns: 1fr 1fr !important; gap: 20px; padding: 30px 5% !important; }
 
   /* ── FOOTER ── */
   .footer-wrapper { padding-top: 50px; }
   .footer-wave { height: 50px; }
   .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px 16px !important; }
   .footer-col:first-child { grid-column: 1 / -1; }
+  .footer-col h4 { font-size: 11px; margin-bottom: 10px; }
+  .footer-col ul li a { font-size: 12px !important; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .subscribe-form, .footer-desc { max-width: 100%; }
-  .pre-footer { grid-template-columns: 1fr 1fr !important; gap: 16px; padding: 28px 5% !important; }
+  .footer-bottom-links { flex-wrap: wrap; gap: 8px; }
+  .subscribe-form { max-width: 100%; }
+  .footer-desc { max-width: 100%; }
+  .products-image { height: 200px; }
+
+  /* ── PRODUCTS FULL BLEED MOBILE ── */
+  .products-section { padding: 20px 0 0 !important; }
+  .products-wave { height: 40px; }
+  .products-wave--top { margin-bottom: -39px; }
+  .products-wave--bottom { margin-top: -39px; }
+  .products-image { height: 240px; }
+
+  /* ── FOUNDER IMAGE FULL WIDTH ── */
+  .founder-section { padding: 40px 0 40px !important; }
+  .founder-inner { padding: 50px 5%; }
+  .two-col { grid-template-columns: 1fr !important; gap: 0 !important; }
+  /* .media-block { max-width: 100% !important; border-radius: 0 !important; aspect-ratio: 4/3 !important; } */
+  .text-col { padding: 24px 5% 0; }
+
+  /* ── MINI KITS: hide desktop grid, show mobile slider ── */
+  .minikits-grid { display: none !important; }
+  #mkSlider { display: flex !important; }
+  #mkDots { display: flex !important; }
+  .minikits-slider-wrap { max-width: 100%; gap: 10px; }
+
+  /* ── CALENDAR: rings stay above scroll wrapper ── */
+  .calendar-board { overflow: visible !important; height: auto !important; max-height: none !important; padding: 14px 8px 14px !important; }
+  .calendar-scroll-wrap {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--brand-pink) var(--brand-cream);
+    height: auto !important;
+    max-height: none !important;
+  }
+  .calendar-scroll-wrap::-webkit-scrollbar { height: 4px; width: 0px; }
+  .calendar-scroll-wrap::-webkit-scrollbar-track { background: var(--brand-cream); }
+  .calendar-scroll-wrap::-webkit-scrollbar-thumb { background: var(--brand-pink); border-radius: 4px; }
+  .calendar-grid { min-width: 490px !important; height: auto !important; }
+  .calendar-cell { height: auto !important; min-height: 55px; }
+  .notebook-rings { padding: 0 8px; top: -10px; }
+  .ring { width: 8px !important; height: 18px !important; border-radius: 6px; }
+  /* Kill any inherited height/overflow from the platform wrapper */
+.calendar-section {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
 }
 
-/* ── VERY SMALL 320-479px ── */
+.calendar-board {
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: visible !important;   /* no vertical scroll here */
+  overflow-x: visible !important;
+}
+
+.calendar-scroll-wrap {
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: hidden !important;    /* explicitly kill vertical scrollbar */
+  overflow-x: auto !important;      /* keep only the horizontal one */
+  padding-bottom: 19px;
+}
+
+/* Belt-and-suspenders: if Graphy wraps your embed in its own div, 
+   target it too — it usually gets a generic class like this */
+.calendar-section, 
+.calendar-section * {
+  overflow-anchor: none;
+}
+}
+
+/* ── VERY SMALL: 320-479px (small Android, SE) ── */
 @media (max-width: 479px) {
-  .section-title { font-size: 22px !important; }
+  .section-title { font-size: 24px !important; }
+  h2, .course-header h2 { font-size: 22px !important; }
+  .hero-carousel { height: 260px; }
+  .wywg-grid { grid-template-columns: repeat(2, 1fr); gap: 16px 10px; }
+  .wywg-item img { width: 50px; height: 50px; }
+  .pre-footer { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
+  .minikits-slider-wrap { gap: 6px; }
+  .minikit-arrow { width: 32px; height: 32px; font-size: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide, .test-grid, .minikits-track { transition: none !important; }
+}
+
+/* ── COURSE-SPECIFIC MOBILE ── */
+@media (max-width: 600px) {
+  .detail-grid, .preetika-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .kit-photo-box { min-height: 220px; }
+  .course-main-title { font-size: 30px !important; }
+  .included-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .included-card { flex: 0 0 85% !important; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+  .gallery-photo { flex: 0 0 80% !important; height: 260px !important; }
+  .preetika-section { padding: 50px 5% !important; }
+}
+@media (max-width: 479px) {
   .stats-grid { grid-template-columns: 1fr 1fr !important; }
-  .minikit-arrow { width: 32px; height: 32px; }
+  .included-card { flex: 0 0 90% !important; }
 }
 
 </style>
@@ -649,6 +823,9 @@ button { font-family: inherit; cursor: pointer; border: none; }
       <button class="play-btn" aria-label="Play testimonial 3"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
     </div>
   </div>
+  </div><!-- /.test-slider-viewport -->
+  <div class="dots-pagination" id="testDots" style="margin-top:20px;"></div>
+  <p class="text-center" style="margin-top:26px;"><a href="https://drive.google.com/drive/u/1/folders/17UZF1OeCfca9VyIiKT3viPOhdyzl2ly6" target="_blank" rel="noopener" style="color:var(--brand-cream);text-decoration:underline;">View More Testimonials</a></p>
 </section>
 
 <!-- ═══ STUDENT GALLERY — cream ═══ -->
@@ -750,7 +927,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 -->
 
 <!-- cream bg, pink smooth bumps pointing DOWN at the bottom -->
-<div style="background:var(--brand-cream);line-height:0;display:block;" aria-hidden="true">
+<div style="background:var(--brand-cream);line-height:0;display:block;height: 50px;" aria-hidden="true">
   <svg viewBox="0 0 1200 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;height:70px;">
     <path fill="#ee6396" d="M0,35 C42.9,53 128.6,53 171.4,35 C214.3,17 300,17 342.9,35 C385.7,53 471.4,53 514.3,35 C557.1,17 642.9,17 685.7,35 C728.6,53 814.3,53 857.1,35 C900,17 985.7,17 1028.6,35 C1071.4,53 1157.1,53 1200,35 L1200,70 L0,70 Z"></path>
   </svg>
@@ -1076,14 +1253,13 @@ button { font-family: inherit; cursor: pointer; border: none; }
   goTo(0);
   startAutoplay();
 })();
-</script>
-<script>
+
 /* ── HAMBURGER DRAWER ── */
 (function () {
-  var btn     = document.getElementById('hamburgerBtn');
-  var drawer  = document.getElementById('mobileDrawer');
-  var overlay = document.getElementById('drawerOverlay');
-  var close   = document.getElementById('drawerClose');
+  const btn     = document.getElementById('hamburgerBtn');
+  const drawer  = document.getElementById('mobileDrawer');
+  const overlay = document.getElementById('drawerOverlay');
+  const close   = document.getElementById('drawerClose');
   if (!btn) return;
   function openD()  { drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
   function closeD() { drawer.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
@@ -1092,160 +1268,245 @@ button { font-family: inherit; cursor: pointer; border: none; }
   overlay.addEventListener('click', closeD);
 })();
 
-/* ── TESTIMONIALS PEEK SLIDER ── */
+/* ── TESTIMONIALS SLIDER ── */
 (function () {
-  var viewport = document.getElementById('testViewport');
-  var grid     = document.getElementById('testGrid');
-  var dotsWrap = document.getElementById('testDots');
+  const viewport = document.getElementById('testViewport');
+  const grid     = document.getElementById('testGrid');
+  const dotsWrap = document.getElementById('testDots');
   if (!viewport || !grid) return;
 
-  var boxes = Array.from(grid.children);
-  var current = 0, startX = null, dragging = false, autoT = null;
+  const boxes = Array.from(grid.children);
+  let current = 0, startX = null, dragging = false, autoT = null;
 
   function isMobile() { return window.innerWidth <= 600; }
   function visibleCount() { return isMobile() ? 1 : (window.innerWidth <= 992 ? 2 : 3); }
-  function gap() { return 14; }
+  function gap() { return isMobile() ? 14 : 24; }
   function slideW() { return boxes[0] ? boxes[0].getBoundingClientRect().width + gap() : 0; }
   function maxCurrent() { return Math.max(0, boxes.length - visibleCount()); }
-  function peekOffset() { return isMobile() ? 44 : 0; }
 
   function buildDots() {
     if (!dotsWrap) return;
     dotsWrap.innerHTML = '';
-    var pages = maxCurrent() + 1;
+    const pages = maxCurrent() + 1;
+    // Hide dots when all items are visible (no scrolling needed)
     if (pages <= 1) { dotsWrap.style.display = 'none'; return; }
     dotsWrap.style.display = 'flex';
-    for (var i = 0; i < pages; i++) {
-      (function(idx) {
-        var d = document.createElement('button');
-        d.className = 'dot' + (idx === 0 ? ' active' : '');
-        d.setAttribute('aria-label', 'Testimonial ' + (idx + 1));
-        d.addEventListener('click', function() { goTo(idx); restartAuto(); });
-        dotsWrap.appendChild(d);
-      })(i);
+    for (let i = 0; i < pages; i++) {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Testimonial ' + (i + 1));
+      d.addEventListener('click', () => { goTo(i); restartAuto(); });
+      dotsWrap.appendChild(d);
     }
   }
 
   function updateDots() {
     if (!dotsWrap) return;
-    Array.from(dotsWrap.children).forEach(function(d, i) { d.classList.toggle('active', i === current); });
+    Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === current));
   }
 
   function goTo(i) {
-    if (!isMobile()) return;
     current = Math.max(0, Math.min(i, maxCurrent()));
-    var offset;
-    var vw = viewport.clientWidth;
-    var sw = slideW();
-    if (current === 0) {
-      offset = 0;
-    } else if (current >= maxCurrent()) {
-      offset = Math.max(0, boxes.length * sw - vw);
-    } else {
-      offset = Math.max(0, (current * sw) - peekOffset());
-    }
-    grid.style.transform = 'translateX(-' + offset + 'px)';
+    grid.style.transform = 'translateX(-' + (current * slideW()) + 'px)';
     updateDots();
   }
 
   function startAuto() {
     if (!isMobile()) return;
-    autoT = setInterval(function() { goTo(current >= maxCurrent() ? 0 : current + 1); }, 4000);
+    autoT = setInterval(() => goTo(current >= maxCurrent() ? 0 : current + 1), 4000);
   }
   function restartAuto() { clearInterval(autoT); startAuto(); }
 
-  viewport.addEventListener('pointerdown', function(e) {
-    if (!isMobile()) return;
+  viewport.addEventListener('pointerdown', e => {
     startX = e.clientX; dragging = false;
     grid.classList.add('is-dragging');
     clearInterval(autoT);
     viewport.setPointerCapture(e.pointerId);
   });
-  viewport.addEventListener('pointermove', function(e) {
-    if (startX === null || !isMobile()) return;
+  viewport.addEventListener('pointermove', e => {
+    if (startX === null) return;
     if (Math.abs(e.clientX - startX) > 5) dragging = true;
-    var vw = viewport.clientWidth;
-    var sw = slideW();
-    var baseOffset;
+    const vw = viewport.clientWidth;
+    const sw = slideW();
+    let baseOffset;
     if (current === 0) { baseOffset = 0; }
     else if (current >= maxCurrent()) { baseOffset = Math.max(0, boxes.length * sw - vw); }
     else { baseOffset = Math.max(0, (current * sw) - peekOffset()); }
     grid.style.transform = 'translateX(-' + (baseOffset - (e.clientX - startX)) + 'px)';
   });
-  viewport.addEventListener('pointerup', function(e) {
+  viewport.addEventListener('pointerup', e => {
     if (startX === null) return;
     grid.classList.remove('is-dragging');
-    var dx = e.clientX - startX;
+    const dx = e.clientX - startX;
     if (dragging) {
       if (dx < -40) goTo(current + 1);
       else if (dx > 40) goTo(current - 1);
-      else goTo(current);
+      else goTo(current); // snap back
     }
     startX = null; dragging = false; restartAuto();
   });
-  viewport.addEventListener('pointercancel', function() {
+  viewport.addEventListener('pointercancel', () => {
     grid.classList.remove('is-dragging');
     goTo(current); startX = null; restartAuto();
   });
-  viewport.addEventListener('mouseenter', function() { clearInterval(autoT); });
+  viewport.addEventListener('mouseenter', () => clearInterval(autoT));
   viewport.addEventListener('mouseleave', restartAuto);
 
   function init() {
     grid.style.transform = '';
     current = 0;
     buildDots();
-    if (isMobile()) { goTo(0); startAuto(); }
+    goTo(0);
+    if (isMobile()) startAuto();
   }
-  window.addEventListener('resize', function() { clearInterval(autoT); init(); });
+  window.addEventListener('resize', () => { clearInterval(autoT); init(); });
   init();
 })();
 
-/* ── MINI KITS SLIDER (mobile only) ── */
+/* ── MINI KITS SLIDER ── */
 (function () {
-  var track    = document.getElementById('mkTrack');
-  var dotsWrap = document.getElementById('mkDots');
-  var btnPrev  = document.getElementById('mkPrev');
-  var btnNext  = document.getElementById('mkNext');
+  const track   = document.getElementById('mkTrack');
+  const dotsWrap = document.getElementById('mkDots');
+  const btnPrev  = document.getElementById('mkPrev');
+  const btnNext  = document.getElementById('mkNext');
   if (!track) return;
 
-  var kits = Array.from(track.children);
-  var total = kits.length;
-  var current = 0;
+  const kits = Array.from(track.children);
+  const total = kits.length;
+  let current = 0;
 
   function buildDots() {
     if (!dotsWrap) return;
     dotsWrap.innerHTML = '';
+    // Only show dots on mobile (slider is hidden on desktop via CSS)
     if (window.innerWidth > 600) { dotsWrap.style.display = 'none'; return; }
     dotsWrap.style.display = 'flex';
-    kits.forEach(function(_, i) {
-      (function(idx) {
-        var d = document.createElement('button');
-        d.className = 'dot' + (idx === 0 ? ' active' : '');
-        d.setAttribute('aria-label', 'Kit ' + (idx + 1));
-        d.addEventListener('click', function() { goTo(idx); });
-        dotsWrap.appendChild(d);
-      })(i);
+    kits.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Kit ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(d);
     });
   }
 
   function updateDots() {
     if (!dotsWrap) return;
-    Array.from(dotsWrap.children).forEach(function(d, i) { d.classList.toggle('active', i === current); });
+    Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === current));
   }
 
   function goTo(i) {
     current = ((i % total) + total) % total;
-    var w = kits[0].getBoundingClientRect().width;
+    const w = kits[0].getBoundingClientRect().width;
     track.style.transform = 'translateX(-' + (current * w) + 'px)';
+    updateDots();
+    btnPrev.disabled = false;
+    btnNext.disabled = false;
+  }
+
+  if (btnPrev) btnPrev.addEventListener('click', () => goTo(current - 1));
+  if (btnNext) btnNext.addEventListener('click', () => goTo(current + 1));
+
+  window.addEventListener('resize', () => goTo(current));
+  buildDots();
+  goTo(0);
+})();
+
+
+
+
+
+/* Gallery Slider — touch, drag, autoplay, dots */
+(function () {
+  const viewport = document.getElementById('galleryViewport');
+  const strip    = document.getElementById('galleryStrip');
+  const dotsWrap = document.getElementById('galleryDots');
+  if (!strip || !viewport) return;
+
+  const photos      = Array.from(strip.children);
+  const AUTOPLAY_MS = 5000;
+  let current       = 0;
+  let autoTimer     = null;
+
+  function visibleCount() {
+    const vw = viewport.clientWidth;
+    if (vw <= 600)  return 1;
+    if (vw <= 992)  return 2;
+    return 4;
+  }
+  function totalPages() { return Math.max(1, photos.length - visibleCount() + 1); }
+  function getSlideWidth() { return photos[0] ? photos[0].getBoundingClientRect().width + 3 : 0; }
+
+  function goTo(idx) {
+    const pages = totalPages();
+    current = Math.max(0, Math.min(idx, pages - 1));
+    const offset = current * getSlideWidth();
+    strip.style.transform = `translateX(-${offset}px)`;
     updateDots();
   }
 
-  if (btnPrev) btnPrev.addEventListener('click', function() { goTo(current - 1); });
-  if (btnNext) btnNext.addEventListener('click', function() { goTo(current + 1); });
+  function buildDots() {
+    if (!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    const pages = totalPages();
+    if (pages <= 1) { dotsWrap.style.display = 'none'; return; }
+    dotsWrap.style.display = 'flex';
+    for (let i = 0; i < pages; i++) {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Gallery page ' + (i + 1));
+      d.addEventListener('click', () => { goTo(i); restartAutoplay(); });
+      dotsWrap.appendChild(d);
+    }
+  }
 
-  window.addEventListener('resize', function() { buildDots(); goTo(current); });
+  function updateDots() {
+    if (!dotsWrap) return;
+    Array.from(dotsWrap.children).forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function startAutoplay() { autoTimer = setInterval(() => { goTo(current + 1 >= totalPages() ? 0 : current + 1); }, AUTOPLAY_MS); }
+  function restartAutoplay() { clearInterval(autoTimer); startAutoplay(); }
+
+  let startX = null, startLeft = 0, dragging = false;
+
+  viewport.addEventListener('pointerdown', e => {
+    startX    = e.clientX;
+    startLeft = current * getSlideWidth();
+    dragging  = false;
+    strip.classList.add('is-dragging');
+    clearInterval(autoTimer);
+    viewport.setPointerCapture(e.pointerId);
+  });
+  viewport.addEventListener('pointermove', e => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    if (Math.abs(dx) > 5) dragging = true;
+    strip.style.transform = `translateX(-${startLeft - dx}px)`;
+  });
+  viewport.addEventListener('pointerup', e => {
+    if (startX === null) return;
+    strip.classList.remove('is-dragging');
+    const dx = e.clientX - startX;
+    if (dragging) {
+      const threshold = getSlideWidth() * 0.2;
+      if (dx < -threshold)      goTo(current + 1);
+      else if (dx > threshold)  goTo(current - 1);
+      else                      goTo(current);
+    }
+    startX = null; dragging = false; restartAutoplay();
+  });
+  viewport.addEventListener('pointercancel', () => {
+    strip.classList.remove('is-dragging');
+    goTo(current); startX = null; restartAutoplay();
+  });
+  viewport.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  viewport.addEventListener('mouseleave', restartAutoplay);
+  window.addEventListener('resize', () => { buildDots(); goTo(Math.min(current, totalPages() - 1)); });
+
   buildDots();
   goTo(0);
+  startAutoplay();
 })();
 </script>
 </body>
