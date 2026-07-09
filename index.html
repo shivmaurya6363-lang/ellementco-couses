@@ -289,6 +289,28 @@ button { font-family: inherit; cursor: pointer; border: none; }
   .hero-slide { transition: none; }
 }
 
+/* ── MINI KITS: slider hidden on desktop, grid shown ── */
+#mkSlider { display: none; }
+#mkDots { display: none; }
+.minikits-grid { display: grid; }
+
+/* ── MINI KITS SLIDER CSS ── */
+.minikits-slider-wrap { position: relative; display: flex; align-items: center; gap: 20px; max-width: 480px; margin: 0 auto; }
+.minikits-viewport { overflow: hidden; width: 100%; }
+.minikits-track { display: flex; transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1); will-change: transform; }
+.minikit-arrow { width: 48px; height: 48px; border-radius: 50%; background: var(--brand-blue); color: var(--brand-white); border: none; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: background .2s, transform .15s; }
+.minikit-arrow:hover { background: var(--brand-blue-dark); }
+.minikit-arrow:active { transform: scale(0.92); }
+.minikit-arrow svg { stroke: var(--brand-white); }
+
+/* ── TESTIMONIALS SLIDER CSS ── */
+.test-slider-viewport { overflow: hidden; }
+.test-grid { display: flex; gap: 24px; transition: transform 0.45s cubic-bezier(0.25,0.8,0.25,1); will-change: transform; max-width: none; margin: 0; }
+.test-box { flex: 0 0 calc(33.333% - 16px); }
+@media (min-width: 601px) {
+  .test-grid { transform: none !important; cursor: default; }
+}
+
 /* ── MOBILE-ONLY ELEMENTS: hidden on desktop ── */
 .hamburger { display: none; }
 .mobile-drawer { display: none; }
@@ -310,133 +332,91 @@ button { font-family: inherit; cursor: pointer; border: none; }
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 40px;
-    height: 40px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    grid-column: 1;
-    grid-row: 1;
+    width: 40px; height: 40px;
+    background: none; border: none;
+    cursor: pointer; padding: 4px;
+    grid-column: 1; grid-row: 1;
   }
-  .hamburger span {
-    display: block;
-    height: 2px;
-    width: 22px;
-    background: var(--brand-black);
-    border-radius: 2px;
-  }
-  .logo {
-    grid-column: 2;
-    grid-row: 1;
-    text-align: center;
-  }
-  .logo .logo-top { font-size: 17px; letter-spacing: 4px; }
-  .logo .logo-sub { font-size: 10px; letter-spacing: 2px; }
+  .hamburger span { display: block; height: 2px; width: 22px; background: var(--brand-black); border-radius: 2px; }
+  .logo { grid-column: 2; grid-row: 1; text-align: center; }
+  .logo .logo-top { font-size: 16px !important; letter-spacing: 3px; }
+  .logo .logo-sub { font-size: 10px !important; letter-spacing: 2px; }
   .btn-phone { display: none !important; }
   .nav-links { display: none !important; }
-  .header-search {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    width: 100%;
-    flex: none;
-  }
+  .header-search { grid-column: 1 / -1; grid-row: 2; width: 100%; flex: none; }
 
   /* ── DRAWER ── */
   .mobile-drawer {
-    display: flex !important;
-    flex-direction: column;
-    position: fixed;
-    top: 0; left: 0;
-    width: 75vw;
-    max-width: 280px;
-    height: 100vh;
-    background: var(--brand-cream);
-    z-index: 1000;
+    display: flex !important; flex-direction: column;
+    position: fixed; top: 0; left: 0;
+    width: 75vw; max-width: 280px; height: 100vh;
+    background: var(--brand-cream); z-index: 1000;
     padding: 60px 28px 40px;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     box-shadow: 4px 0 24px rgba(0,0,0,0.12);
   }
   .mobile-drawer.open { transform: translateX(0); }
-  .drawer-close {
-    position: absolute;
-    top: 16px; right: 16px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: var(--brand-black);
-    line-height: 1;
-  }
-  .drawer-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin-top: 12px;
-  }
-  .drawer-nav a {
-    font-family: var(--serif);
-    font-size: 17px;
-    color: var(--brand-black);
-    text-decoration: none;
-    padding: 16px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-  .drawer-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 999;
-  }
+  .drawer-close { position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--brand-black); }
+  .drawer-nav { display: flex; flex-direction: column; gap: 0; margin-top: 12px; }
+  .drawer-nav a { font-family: var(--serif); font-size: 17px; color: var(--brand-black); text-decoration: none; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .drawer-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 999; }
   .drawer-overlay.open { display: block !important; }
 
-  /* ── TESTIMONIALS SLIDER ── */
-  .test-slider-wrap { overflow: hidden; }
-  .test-grid {
-    display: flex !important;
-    gap: 14px;
-    transition: transform 0.42s cubic-bezier(0.25, 0.8, 0.25, 1);
-    will-change: transform;
-    cursor: grab;
-    max-width: none !important;
-    margin: 0 !important;
-  }
-  .test-grid.is-dragging { transition: none; cursor: grabbing; }
-  .test-box { flex: 0 0 85% !important; }
-  .test-section { padding: 40px 5% 60px; }
-  .test-section .section-title { font-size: 34px !important; }
+  /* ── TESTIMONIALS PEEK SLIDER ── */
+  .test-slider-viewport { overflow: hidden; touch-action: pan-y; padding-left: 44px; }
+  .test-grid { cursor: grab; margin-left: -44px; }
+  .test-grid.is-dragging { transition: none !important; cursor: grabbing; }
+  .test-box { flex: 0 0 88% !important; }
+  .test-section { padding: 30px 5% 50px !important; }
+  .test-section .section-title { font-size: 26px !important; }
 
   /* ── GENERAL SPACING ── */
-  .section { padding: 40px 5% !important; }
-  .section-title { font-size: 30px !important; margin-bottom: 24px !important; }
+  section, .section { padding-left: 5% !important; padding-right: 5% !important; padding-top: 36px !important; padding-bottom: 40px !important; }
+  .section-title { font-size: 26px !important; margin-bottom: 20px !important; }
 
-  /* ── COURSE DETAIL HERO ── */
-  .course-detail-section .two-col,
-  .two-col { grid-template-columns: 1fr !important; gap: 24px !important; }
-  .kit-photo-box { min-height: 240px; }
+  /* ── COURSE DETAIL ── */
+  .detail-grid, .preetika-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .kit-photo-box { min-height: 220px; }
+  .course-main-title { font-size: 30px !important; }
 
   /* ── INCLUDED / STATS ── */
   .included-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 16px !important; }
+  .included-card { flex: 0 0 85% !important; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
 
   /* ── GALLERY ── */
-  .gallery-photo { flex: 0 0 80% !important; }
+  .gallery-photo { flex: 0 0 80% !important; height: 260px !important; }
 
-  /* ── MINI KITS ── */
-  .minikits-grid { grid-template-columns: 1fr !important; }
+  /* ── MINI KITS: hide desktop grid, show mobile slider ── */
+  .minikits-grid { display: none !important; }
+  #mkSlider { display: flex !important; }
+  #mkDots { display: flex !important; }
+  .minikits-slider-wrap { max-width: 100%; gap: 10px; }
+  .minikit-arrow { width: 38px; height: 38px; }
+  .minikits-section { padding: 30px 5% 40px !important; }
 
   /* ── CONSULTATION ── */
-  .consultation-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .consultation-section { padding: 30px 5% 40px !important; }
+  .consultation-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .consultation-form { padding: 22px; }
+  .form-title { font-size: 24px !important; }
 
   /* ── FOOTER ── */
+  .footer-wrapper { padding-top: 50px; }
+  .footer-wave { height: 50px; }
   .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 24px 16px !important; }
   .footer-col:first-child { grid-column: 1 / -1; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .subscribe-form { max-width: 100%; }
-  .footer-desc { max-width: 100%; font-size: 13px; }
-  .footer-wrapper { padding-top: 50px; }
+  .subscribe-form, .footer-desc { max-width: 100%; }
+  .pre-footer { grid-template-columns: 1fr 1fr !important; gap: 16px; padding: 28px 5% !important; }
+}
+
+/* ── VERY SMALL 320-479px ── */
+@media (max-width: 479px) {
+  .section-title { font-size: 22px !important; }
+  .stats-grid { grid-template-columns: 1fr 1fr !important; }
+  .minikit-arrow { width: 32px; height: 32px; }
 }
 
 </style>
@@ -657,7 +637,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 <!-- ═══ STUDENT TESTIMONIALS — pink, exact match to test-section ═══ -->
 <section class="test-section">
   <h2 class="section-title">Student Testimonials</h2>
-  <div class="test-slider-wrap" id="testSliderWrap">
+  <div class="test-slider-viewport" id="testViewport">
   <div class="test-grid" id="testGrid">
     <div class="test-box">
       <button class="play-btn" aria-label="Play testimonial 1"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
@@ -718,6 +698,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 <!-- ═══ MINI KITS — cream with wavy borders (exact from index.html) ═══ -->
 <section class="minikits-section">
   <h2 class="section-title">Mini kits</h2>
+  <!-- Desktop: 3-column grid -->
   <div class="minikits-grid">
     <div class="minikit-col">
       <div class="minikit-box"><img src="public/DIY_workshop_kit.jpg" alt="DIY Workshop Kit"></div>
@@ -732,6 +713,32 @@ button { font-family: inherit; cursor: pointer; border: none; }
       <button class="minikit-pill">Shop now!</button>
     </div>
   </div>
+  <!-- Mobile only: arrow slider -->
+  <div class="minikits-slider-wrap" id="mkSlider">
+    <button class="minikit-arrow minikit-arrow--prev" id="mkPrev" aria-label="Previous kit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <div class="minikits-viewport" id="mkViewport">
+      <div class="minikits-track" id="mkTrack">
+        <div class="minikit-col">
+          <div class="minikit-box"><img src="public/DIY_workshop_kit.jpg" alt="DIY Workshop Kit"></div>
+          <button class="minikit-pill">Shop now!</button>
+        </div>
+        <div class="minikit-col">
+          <div class="minikit-box"><img src="public/Nail_anatomy_workshop_kit.jpg" alt="Nail Anatomy Kit"></div>
+          <button class="minikit-pill">Shop now!</button>
+        </div>
+        <div class="minikit-col">
+          <div class="minikit-box"><img src="public/Press_on_workshop_kit_.jpg" alt="Press On Kit"></div>
+          <button class="minikit-pill">Shop now!</button>
+        </div>
+      </div>
+    </div>
+    <button class="minikit-arrow minikit-arrow--next" id="mkNext" aria-label="Next kit">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
+  <div class="dots-pagination" id="mkDots"></div>
 </section>
 
 <!--
@@ -1071,67 +1078,101 @@ button { font-family: inherit; cursor: pointer; border: none; }
 })();
 </script>
 <script>
-/* ── MOBILE HAMBURGER DRAWER ── */
+/* ── HAMBURGER DRAWER ── */
 (function () {
   var btn     = document.getElementById('hamburgerBtn');
   var drawer  = document.getElementById('mobileDrawer');
   var overlay = document.getElementById('drawerOverlay');
   var close   = document.getElementById('drawerClose');
   if (!btn) return;
-  function openDrawer()  { drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
-  btn.addEventListener('click', openDrawer);
-  close.addEventListener('click', closeDrawer);
-  overlay.addEventListener('click', closeDrawer);
+  function openD()  { drawer.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeD() { drawer.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  btn.addEventListener('click', openD);
+  close.addEventListener('click', closeD);
+  overlay.addEventListener('click', closeD);
 })();
 
-/* ── TESTIMONIALS MOBILE SLIDER ── */
+/* ── TESTIMONIALS PEEK SLIDER ── */
 (function () {
-  var wrap   = document.getElementById('testSliderWrap');
-  var grid   = document.getElementById('testGrid');
-  var dotsW  = document.getElementById('testDots');
-  if (!wrap || !grid) return;
-  var current = 0, startX = null, dragging = false, autoT = null;
+  var viewport = document.getElementById('testViewport');
+  var grid     = document.getElementById('testGrid');
+  var dotsWrap = document.getElementById('testDots');
+  if (!viewport || !grid) return;
+
   var boxes = Array.from(grid.children);
+  var current = 0, startX = null, dragging = false, autoT = null;
+
   function isMobile() { return window.innerWidth <= 600; }
-  function slideW()   { return boxes[0] ? boxes[0].getBoundingClientRect().width + 14 : 0; }
+  function visibleCount() { return isMobile() ? 1 : (window.innerWidth <= 992 ? 2 : 3); }
+  function gap() { return 14; }
+  function slideW() { return boxes[0] ? boxes[0].getBoundingClientRect().width + gap() : 0; }
+  function maxCurrent() { return Math.max(0, boxes.length - visibleCount()); }
+  function peekOffset() { return isMobile() ? 44 : 0; }
+
   function buildDots() {
-    if (!dotsW) return;
-    dotsW.innerHTML = '';
-    if (!isMobile()) return;
-    boxes.forEach(function(_, i) {
-      var d = document.createElement('button');
-      d.className = 'dot' + (i === 0 ? ' active' : '');
-      d.setAttribute('aria-label', 'Testimonial ' + (i + 1));
-      d.addEventListener('click', function() { goTo(i); restartAuto(); });
-      dotsW.appendChild(d);
-    });
+    if (!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    var pages = maxCurrent() + 1;
+    if (pages <= 1) { dotsWrap.style.display = 'none'; return; }
+    dotsWrap.style.display = 'flex';
+    for (var i = 0; i < pages; i++) {
+      (function(idx) {
+        var d = document.createElement('button');
+        d.className = 'dot' + (idx === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Testimonial ' + (idx + 1));
+        d.addEventListener('click', function() { goTo(idx); restartAuto(); });
+        dotsWrap.appendChild(d);
+      })(i);
+    }
   }
+
   function updateDots() {
-    if (!dotsW) return;
-    Array.from(dotsW.children).forEach(function(d, i) { d.classList.toggle('active', i === current); });
+    if (!dotsWrap) return;
+    Array.from(dotsWrap.children).forEach(function(d, i) { d.classList.toggle('active', i === current); });
   }
+
   function goTo(i) {
     if (!isMobile()) return;
-    current = Math.max(0, Math.min(i, boxes.length - 1));
-    grid.style.transform = 'translateX(-' + (current * slideW()) + 'px)';
+    current = Math.max(0, Math.min(i, maxCurrent()));
+    var offset;
+    var vw = viewport.clientWidth;
+    var sw = slideW();
+    if (current === 0) {
+      offset = 0;
+    } else if (current >= maxCurrent()) {
+      offset = Math.max(0, boxes.length * sw - vw);
+    } else {
+      offset = Math.max(0, (current * sw) - peekOffset());
+    }
+    grid.style.transform = 'translateX(-' + offset + 'px)';
     updateDots();
   }
-  function startAuto()   { autoT = setInterval(function() { goTo(current + 1 >= boxes.length ? 0 : current + 1); }, 4000); }
+
+  function startAuto() {
+    if (!isMobile()) return;
+    autoT = setInterval(function() { goTo(current >= maxCurrent() ? 0 : current + 1); }, 4000);
+  }
   function restartAuto() { clearInterval(autoT); startAuto(); }
-  wrap.addEventListener('pointerdown', function(e) {
+
+  viewport.addEventListener('pointerdown', function(e) {
     if (!isMobile()) return;
     startX = e.clientX; dragging = false;
     grid.classList.add('is-dragging');
     clearInterval(autoT);
-    wrap.setPointerCapture(e.pointerId);
+    viewport.setPointerCapture(e.pointerId);
   });
-  wrap.addEventListener('pointermove', function(e) {
+  viewport.addEventListener('pointermove', function(e) {
     if (startX === null || !isMobile()) return;
     if (Math.abs(e.clientX - startX) > 5) dragging = true;
-    grid.style.transform = 'translateX(-' + (current * slideW() - (e.clientX - startX)) + 'px)';
+    var vw = viewport.clientWidth;
+    var sw = slideW();
+    var baseOffset;
+    if (current === 0) { baseOffset = 0; }
+    else if (current >= maxCurrent()) { baseOffset = Math.max(0, boxes.length * sw - vw); }
+    else { baseOffset = Math.max(0, (current * sw) - peekOffset()); }
+    grid.style.transform = 'translateX(-' + (baseOffset - (e.clientX - startX)) + 'px)';
   });
-  wrap.addEventListener('pointerup', function(e) {
+  viewport.addEventListener('pointerup', function(e) {
     if (startX === null) return;
     grid.classList.remove('is-dragging');
     var dx = e.clientX - startX;
@@ -1142,16 +1183,69 @@ button { font-family: inherit; cursor: pointer; border: none; }
     }
     startX = null; dragging = false; restartAuto();
   });
-  wrap.addEventListener('pointercancel', function() {
+  viewport.addEventListener('pointercancel', function() {
     grid.classList.remove('is-dragging');
     goTo(current); startX = null; restartAuto();
   });
+  viewport.addEventListener('mouseenter', function() { clearInterval(autoT); });
+  viewport.addEventListener('mouseleave', restartAuto);
+
   function init() {
-    if (isMobile()) { buildDots(); goTo(0); startAuto(); }
-    else { grid.style.transform = ''; if (dotsW) dotsW.innerHTML = ''; clearInterval(autoT); }
+    grid.style.transform = '';
+    current = 0;
+    buildDots();
+    if (isMobile()) { goTo(0); startAuto(); }
   }
-  window.addEventListener('resize', init);
+  window.addEventListener('resize', function() { clearInterval(autoT); init(); });
   init();
+})();
+
+/* ── MINI KITS SLIDER (mobile only) ── */
+(function () {
+  var track    = document.getElementById('mkTrack');
+  var dotsWrap = document.getElementById('mkDots');
+  var btnPrev  = document.getElementById('mkPrev');
+  var btnNext  = document.getElementById('mkNext');
+  if (!track) return;
+
+  var kits = Array.from(track.children);
+  var total = kits.length;
+  var current = 0;
+
+  function buildDots() {
+    if (!dotsWrap) return;
+    dotsWrap.innerHTML = '';
+    if (window.innerWidth > 600) { dotsWrap.style.display = 'none'; return; }
+    dotsWrap.style.display = 'flex';
+    kits.forEach(function(_, i) {
+      (function(idx) {
+        var d = document.createElement('button');
+        d.className = 'dot' + (idx === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Kit ' + (idx + 1));
+        d.addEventListener('click', function() { goTo(idx); });
+        dotsWrap.appendChild(d);
+      })(i);
+    });
+  }
+
+  function updateDots() {
+    if (!dotsWrap) return;
+    Array.from(dotsWrap.children).forEach(function(d, i) { d.classList.toggle('active', i === current); });
+  }
+
+  function goTo(i) {
+    current = ((i % total) + total) % total;
+    var w = kits[0].getBoundingClientRect().width;
+    track.style.transform = 'translateX(-' + (current * w) + 'px)';
+    updateDots();
+  }
+
+  if (btnPrev) btnPrev.addEventListener('click', function() { goTo(current - 1); });
+  if (btnNext) btnNext.addEventListener('click', function() { goTo(current + 1); });
+
+  window.addEventListener('resize', function() { buildDots(); goTo(current); });
+  buildDots();
+  goTo(0);
 })();
 </script>
 </body>
