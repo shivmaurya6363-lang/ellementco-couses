@@ -165,7 +165,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .test-section { background-color: var(--brand-pink); padding: 55px 8% 90px; }
 .test-section .section-title { color: var(--brand-cream); font-family: var(--display); font-size: 48px; margin-bottom: 45px; font-weight: 400; }
 .test-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 44px; max-width: 1050px; margin: 0 auto; }
-.test-box { background: #000; border-radius: 34px; aspect-ratio: 3/4; position: relative; overflow: hidden; }
+.test-box { background: var(--brand-cream); border-radius: 34px; aspect-ratio: 3/4; position: relative; overflow: hidden; }
 .test-box .play-btn { border-color: var(--brand-pink); color: var(--brand-pink); width: 66px; height: 66px; }
 .test-box .play-btn svg { width: 26px; height: 26px; }
 
@@ -607,7 +607,7 @@ button { font-family: inherit; cursor: pointer; border: none; }
 .test-box {
   position: relative;
   overflow: hidden;
-  background: #000;
+  background: var(--brand-cream);
 }
 .test-video {
   position: absolute;
@@ -904,7 +904,9 @@ button { font-family: inherit; cursor: pointer; border: none; }
   <div class="test-slider-viewport" id="testViewport">
   <div class="test-grid" id="testGrid">
       <div class="test-box">
-        <video class="test-video" autoplay muted loop playsinline preload="auto"></video>
+        <video class="test-video" autoplay muted loop playsinline preload="auto">
+          <source src="https://cdn.shopify.com/videos/c/o/v/6c8c1bd2c24443ad91a92aefe77c1e07.mp4" type="video/mp4">
+        </video>
         <div class="play-overlay">
           <button class="sound-btn" aria-label="Toggle sound">
             <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -913,7 +915,9 @@ button { font-family: inherit; cursor: pointer; border: none; }
         </div>
       </div>
       <div class="test-box">
-        <video class="test-video" autoplay muted loop playsinline preload="auto"></video>
+        <video class="test-video" autoplay muted loop playsinline preload="auto">
+          <source src="https://cdn.shopify.com/videos/c/o/v/169293710730450dbdd65c6f3bafb442.mp4" type="video/mp4">
+        </video>
         <div class="play-overlay">
           <button class="sound-btn" aria-label="Toggle sound">
             <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -922,7 +926,20 @@ button { font-family: inherit; cursor: pointer; border: none; }
         </div>
       </div>
       <div class="test-box">
-        <video class="test-video" autoplay muted loop playsinline preload="auto"></video>
+        <video class="test-video" autoplay muted loop playsinline preload="auto">
+          <source src="https://cdn.shopify.com/videos/c/o/v/314711d121a44a3cac37e3fa2ab28bc4.mp4" type="video/mp4">
+        </video>
+        <div class="play-overlay">
+          <button class="sound-btn" aria-label="Toggle sound">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <svg class="icon-volume" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="26" height="26" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="test-box">
+        <video class="test-video" autoplay muted loop playsinline preload="auto">
+          <source src="https://cdn.shopify.com/videos/c/o/v/e5ac17eeb8ea483481c67aebd473d310.mp4" type="video/mp4">
+        </video>
         <div class="play-overlay">
           <button class="sound-btn" aria-label="Toggle sound">
             <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor" width="26" height="26"><polygon points="5 3 19 12 5 21 5 3"/></svg>
@@ -937,7 +954,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
   </button>
 </div><!-- /.test-slider-controls -->
   <div class="dots-pagination" id="testDots" style="margin-top:20px;"></div>
-  <p class="text-center" style="margin-top:26px;"><a href="https://drive.google.com/drive/u/1/folders/17UZF1OeCfca9VyIiKT3viPOhdyzl2ly6" target="_blank" rel="noopener" style="color:var(--brand-cream);text-decoration:underline;">View More Testimonials</a></p>
 </section>
 
 <!-- ═══ STUDENT GALLERY — cream ═══ -->
@@ -1630,36 +1646,42 @@ button { font-family: inherit; cursor: pointer; border: none; }
   var btnNext  = document.getElementById('testNext');
   if (!viewport || !grid) return;
 
-  var boxes   = Array.from(grid.querySelectorAll('.test-box'));
   var current = 0;
 
+  function boxes() { return Array.from(grid.querySelectorAll('.test-box')); }
   function isMobile() { return window.innerWidth <= 600; }
   function visibleCount() { return isMobile() ? 1 : (window.innerWidth <= 992 ? 2 : 3); }
-  function maxIdx() { return Math.max(0, boxes.length - visibleCount()); }
-  function slideW() { return boxes[0] ? boxes[0].getBoundingClientRect().width + parseInt(getComputedStyle(grid).gap) : 0; }
+  function gap() {
+    var g = parseInt(getComputedStyle(grid).gap || getComputedStyle(grid).columnGap || '0');
+    return isNaN(g) ? 28 : g;
+  }
+  function slideW() {
+    var b = boxes();
+    return b.length ? b[0].getBoundingClientRect().width + gap() : 0;
+  }
+  function maxIdx() { return Math.max(0, boxes().length - visibleCount()); }
 
-  // ── ARROWS ──
   function updateArrows() {
     if (!btnPrev || !btnNext) return;
     var max = maxIdx();
     btnPrev.disabled = current <= 0;
     btnNext.disabled = current >= max;
-    // Hide both if nothing to slide
-    var show = max > 0;
-    btnPrev.style.visibility = show ? 'visible' : 'hidden';
-    btnNext.style.visibility = show ? 'visible' : 'hidden';
+    btnPrev.style.visibility = max > 0 ? 'visible' : 'hidden';
+    btnNext.style.visibility = max > 0 ? 'visible' : 'hidden';
   }
 
   function goTo(i) {
-    current = Math.max(0, Math.min(i, maxIdx()));
+    var max = maxIdx();
+    current = Math.max(0, Math.min(i, max));
+    var sw = slideW();
+    var offset;
     if (isMobile()) {
-      var vw  = viewport.clientWidth;
-      var sw  = slideW();
-      var offset = current === 0 ? 0 : current >= maxIdx() ? Math.max(0, boxes.length * sw - vw) : Math.max(0, current * sw - 44);
-      grid.style.transform = 'translateX(-' + offset + 'px)';
+      var vw = viewport.clientWidth;
+      offset = current === 0 ? 0 : current >= max ? Math.max(0, boxes().length * sw - vw) : Math.max(0, current * sw - 44);
     } else {
-      grid.style.transform = 'translateX(-' + (current * slideW()) + 'px)';
+      offset = current * sw;
     }
+    grid.style.transform = 'translateX(-' + offset + 'px)';
     updateDots();
     updateArrows();
   }
@@ -1667,7 +1689,6 @@ button { font-family: inherit; cursor: pointer; border: none; }
   if (btnPrev) btnPrev.addEventListener('click', function() { goTo(current - 1); });
   if (btnNext) btnNext.addEventListener('click', function() { goTo(current + 1); });
 
-  // ── DOTS ──
   function buildDots() {
     if (!dotsWrap) return;
     dotsWrap.innerHTML = '';
@@ -1689,47 +1710,42 @@ button { font-family: inherit; cursor: pointer; border: none; }
     Array.from(dotsWrap.children).forEach(function(d, i) { d.classList.toggle('active', i === current); });
   }
 
-  // ── SOUND TOGGLE ──
   function setMuted(box, muted) {
     var video = box.querySelector('.test-video');
     var btn   = box.querySelector('.sound-btn');
     if (!video || !btn) return;
     video.muted = muted;
-    var iconPlay   = btn.querySelector('.icon-play');
-    var iconVolume = btn.querySelector('.icon-volume');
-    if (iconPlay)   iconPlay.style.display   = muted ? '' : 'none';
-    if (iconVolume) iconVolume.style.display  = muted ? 'none' : '';
+    var ip = btn.querySelector('.icon-play');
+    var iv = btn.querySelector('.icon-volume');
+    if (ip) ip.style.display = muted ? '' : 'none';
+    if (iv) iv.style.display = muted ? 'none' : '';
   }
 
-  boxes.forEach(function(box) {
-    var video = box.querySelector('.test-video');
-    var btn   = box.querySelector('.sound-btn');
-    if (!video) return;
-
-    // Hide button if video errors
-    video.addEventListener('error', function() { if (btn) btn.style.display = 'none'; });
-
-    // Ensure autoplay
-    video.play().catch(function() {});
-
-    if (!btn) return;
-    btn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isCurrentlyMuted = video.muted;
-      // Mute ALL boxes first
-      boxes.forEach(function(b) { setMuted(b, true); });
-      // If this one WAS muted → unmute it; if was already unmuted → stays muted (toggle off)
-      if (isCurrentlyMuted) { setMuted(box, false); }
+  function initVideos() {
+    boxes().forEach(function(box) {
+      var video = box.querySelector('.test-video');
+      var btn   = box.querySelector('.sound-btn');
+      if (!video) return;
+      video.addEventListener('error', function() { if (btn) btn.style.display = 'none'; });
+      video.play().catch(function() {});
+      if (!btn) return;
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var wasMuted = video.muted;
+        boxes().forEach(function(b) { setMuted(b, true); });
+        if (wasMuted) setMuted(box, false);
+      });
     });
-  });
+  }
 
-  // ── INIT ──
   function init() {
     current = 0;
     grid.style.transform = '';
     buildDots();
     goTo(0);
+    initVideos();
   }
+
   window.addEventListener('resize', function() { init(); });
   init();
 })();
