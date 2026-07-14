@@ -604,15 +604,13 @@ button { font-family: inherit; cursor: pointer; border: none; }
 
 
 /* ── TESTIMONIAL VIDEOS ── */
-.test-box { position: relative; overflow: hidden; cursor: pointer; }
+.test-box { position: relative; overflow: hidden; }
 .test-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.4s ease;
   border-radius: inherit;
   display: block;
 }
@@ -623,11 +621,23 @@ button { font-family: inherit; cursor: pointer; border: none; }
   align-items: center;
   justify-content: center;
   z-index: 2;
-  transition: opacity 0.3s ease;
-  background: rgba(251,244,230,0.15);
+  pointer-events: none;
 }
-.test-box.is-playing .test-video { opacity: 1; }
-.test-box.is-playing .play-overlay { opacity: 0; pointer-events: none; }
+.sound-btn {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 2.5px solid var(--brand-pink);
+  background: rgba(251,244,230,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: all;
+  transition: background 0.2s ease, transform 0.15s ease;
+  backdrop-filter: blur(4px);
+}
+.sound-btn:hover { background: var(--brand-cream); transform: scale(1.08); }
+.sound-btn svg { stroke: var(--brand-pink); }
 </style>
 </head>
 <body>
@@ -848,34 +858,34 @@ button { font-family: inherit; cursor: pointer; border: none; }
   <h2 class="section-title">Student Testimonials</h2>
   <div class="test-slider-viewport" id="testViewport">
   <div class="test-grid" id="testGrid">
-    <div class="test-box">
-        <video class="test-video" preload="none" playsinline webkit-playsinline muted>
-          <source src="https://cdn.shopify.com/videos/c/o/v/169293710730450dbdd65c6f3bafb442.mp4" type="video/mp4">
-          <source src="https://cdn.shopify.com/videos/c/o/v/169293710730450dbdd65c6f3bafb442.mp4" type="video/mp4">
-        </video>
+      <div class="test-box">
+        <video class="test-video" src="https://cdn.shopify.com/videos/c/o/v/169293710730450dbdd65c6f3bafb442.mp4" autoplay muted loop playsinline preload="auto"></video>
         <div class="play-overlay">
-          <button class="play-btn" aria-label="Play testimonial 1"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+          <button class="sound-btn" aria-label="Toggle sound">
+            <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
         </div>
       </div>
       <div class="test-box">
-        <video class="test-video" preload="none" playsinline webkit-playsinline muted>
-          <source src="https://cdn.shopify.com/videos/c/o/v/314711d121a44a3cac37e3fa2ab28bc4.mp4" type="video/mp4">
-          <source src="https://cdn.shopify.com/videos/c/o/v/314711d121a44a3cac37e3fa2ab28bc4.mp4" type="video/mp4">
-        </video>
+        <video class="test-video" src="https://cdn.shopify.com/videos/c/o/v/314711d121a44a3cac37e3fa2ab28bc4.mp4" autoplay muted loop playsinline preload="auto"></video>
         <div class="play-overlay">
-          <button class="play-btn" aria-label="Play testimonial 2"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+          <button class="sound-btn" aria-label="Toggle sound">
+            <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
         </div>
       </div>
       <div class="test-box">
-        <video class="test-video" preload="none" playsinline webkit-playsinline muted>
-          <source src="https://cdn.shopify.com/videos/c/o/v/e5ac17eeb8ea483481c67aebd473d310.mp4" type="video/mp4">
-          <source src="https://cdn.shopify.com/videos/c/o/v/e5ac17eeb8ea483481c67aebd473d310.mp4" type="video/mp4">
-        </video>
+        <video class="test-video" src="https://cdn.shopify.com/videos/c/o/v/e5ac17eeb8ea483481c67aebd473d310.mp4" autoplay muted loop playsinline preload="auto"></video>
         <div class="play-overlay">
-          <button class="play-btn" aria-label="Play testimonial 3"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
+          <button class="sound-btn" aria-label="Toggle sound">
+            <svg class="icon-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+            <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28" style="display:none"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+          </button>
         </div>
       </div>
-  </div>
+    </div>
   </div><!-- /.test-slider-viewport -->
   <div class="dots-pagination" id="testDots" style="margin-top:20px;"></div>
   <p class="text-center" style="margin-top:26px;"><a href="https://drive.google.com/drive/u/1/folders/17UZF1OeCfca9VyIiKT3viPOhdyzl2ly6" target="_blank" rel="noopener" style="color:var(--brand-cream);text-decoration:underline;">View More Testimonials</a></p>
@@ -1562,46 +1572,44 @@ button { font-family: inherit; cursor: pointer; border: none; }
   startAutoplay();
 })();
 
-/* ── TESTIMONIAL VIDEO PLAY ── */
+/* ── TESTIMONIAL VIDEO SOUND TOGGLE ── */
 (function() {
   document.querySelectorAll('.test-box').forEach(function(box) {
     var video = box.querySelector('.test-video');
-    var overlay = box.querySelector('.play-overlay');
-    if (!video) return;
+    var btn = box.querySelector('.sound-btn');
+    if (!video || !btn) return;
 
-    // If video can't load at all, hide video element — design stays intact
+    var iconMuted = btn.querySelector('.icon-muted');
+    var iconUnmuted = btn.querySelector('.icon-unmuted');
+
+    // Video autoplays muted — if error hide overlay cleanly
     video.addEventListener('error', function() {
-      video.style.display = 'none';
+      if (btn) btn.style.display = 'none';
     });
 
-    // Click anywhere on box to play/pause
-    box.addEventListener('click', function() {
-      if (box.classList.contains('is-playing')) {
-        video.pause();
-        box.classList.remove('is-playing');
-      } else {
-        // Pause all others first
-        document.querySelectorAll('.test-box.is-playing').forEach(function(b) {
-          b.querySelector('.test-video').pause();
-          b.classList.remove('is-playing');
+    // Start autoplay
+    video.play().catch(function() {});
+
+    // Sound button toggles mute
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (video.muted) {
+        // Unmute this one, mute all others
+        document.querySelectorAll('.test-box .test-video').forEach(function(v) {
+          v.muted = true;
+          var b = v.closest('.test-box').querySelector('.sound-btn');
+          if (b) {
+            b.querySelector('.icon-muted').style.display = '';
+            b.querySelector('.icon-unmuted').style.display = 'none';
+          }
         });
-        // Unmute and play
         video.muted = false;
-        video.currentTime = 0;
-        var playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise.then(function() {
-            box.classList.add('is-playing');
-          }).catch(function() {
-            // Browser blocked — try muted first
-            video.muted = true;
-            video.play().then(function() {
-              box.classList.add('is-playing');
-            }).catch(function() {
-              // Video unavailable — keep design as-is
-            });
-          });
-        }
+        iconMuted.style.display = 'none';
+        iconUnmuted.style.display = '';
+      } else {
+        video.muted = true;
+        iconMuted.style.display = '';
+        iconUnmuted.style.display = 'none';
       }
     });
   });
